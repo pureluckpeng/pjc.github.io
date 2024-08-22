@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>前端js读取本地md或txt文件内容</title>
+</head>
+<body>
+<script>
+  function readTextFile(fileName) {
+    var rawFile = new XMLHttpRequest()
+    var filePath = location.origin + '/' + fileName
+    rawFile.open('GET', fileName, false)
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4) {
+        if (rawFile.status === 200 || rawFile.status == 0) {
+          var allText = rawFile.responseText
+          document.getElementById('showmd').innerHTML = allText
+          console.log(666.20001, allText, location)
+        }
+      }
+    }
+    rawFile.send(null)
+  }
+</script>
+<div id="showmd"></div>
+<button onclick="readTextFile('md/index.md')">测试按钮</button>
+<button onclick="readTextFile('md/index.md')">测试按钮2</button>
+</body>
+</html>
